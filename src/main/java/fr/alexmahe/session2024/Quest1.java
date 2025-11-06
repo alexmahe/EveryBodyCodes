@@ -1,4 +1,4 @@
-package fr.alexmahe.common.session2024;
+package fr.alexmahe.session2024;
 
 import fr.alexmahe.common.Utils;
 import lombok.extern.slf4j.Slf4j;
@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 

@@ -1,4 +1,4 @@
-package fr.alexmahe.common.session2024;
+package fr.alexmahe.session2024;
 
 import fr.alexmahe.common.Utils;
 import lombok.extern.slf4j.Slf4j;
