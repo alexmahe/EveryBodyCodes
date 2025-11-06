@@ -1,4 +1,4 @@
-package fr.aoc.common;
+package fr.alexmahe.common;
 
 import org.apache.commons.io.IOUtils;
 
@@ -22,7 +22,7 @@ public class Utils {
     }
     public static String readInputJoinOnNewLines(String filepath) throws IOException {
         try (FileInputStream fis = new FileInputStream(filepath)) {
-            return java.lang.String.join("", IOUtils.toString(fis, StandardCharsets.UTF_8).split(REGEX_NEW_LINE));
+            return String.join("", IOUtils.toString(fis, StandardCharsets.UTF_8).split(REGEX_NEW_LINE));
         }
     }
 
