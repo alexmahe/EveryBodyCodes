@@ -3,7 +3,6 @@ package fr.alexmahe.session2025;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 @Slf4j
 public class Quest02 {
@@ -23,7 +22,7 @@ public class Quest02 {
         log.info("Resultat partie 01 : {}", result);
 
         // PART 02
-        A = new Complex(35300, -64910); // grid start
+        A = new Complex(-79027,-15068); // grid start
         var counter = today.cycleGrid(A, 1000, 10);
         log.info("Points à graver : {}", counter);
 
@@ -36,20 +35,10 @@ public class Quest02 {
         Complex result;
         var gridEnd = gridStart.add(new Complex(gridMaxSize, gridMaxSize));
         var counterResult = 0;
-        var counterPoint = 0;
         var maxLimit = new BigDecimal(1000000);
         var minLimit = new BigDecimal(-1000000);
-        var nbPointGrille = gridMaxSize * gridMaxSize;
-        var nbPointToCheck = granularity * granularity;
-        var checkpoint = Math.max(1000, nbPointToCheck / 100);
         for (long indexX = gridStart.X().longValueExact(); indexX <= gridEnd.X().longValueExact(); indexX += granularity) {
             for (long indexY = gridStart.Y().longValueExact(); indexY <= gridEnd.Y().longValueExact(); indexY += granularity) {
-                if (counterPoint % checkpoint == 0) {
-                    log.info("{} points calculés", counterPoint);
-                    log.info("Avancement : {}%", (100 * (counterPoint)) / (nbPointGrille / nbPointToCheck));
-                }
-                counterPoint++;
-
                 var engrave = true;
                 var point = new Complex(indexX, indexY);
                 result = point.deepCopy(); // equivaut au 1er cycle sur les 100
@@ -57,10 +46,7 @@ public class Quest02 {
                 for (long repetition = 0; repetition < 99; repetition++) {
                     result = cycle(result, point, HUNDREDK);
 
-                    if (result.X().compareTo(maxLimit) > 0
-                            || result.X().compareTo(minLimit) < 0
-                            || result.Y().compareTo(maxLimit) > 0
-                            || result.Y().compareTo(minLimit) < 0) {
+                    if (isOutsideLimit(result, maxLimit, minLimit)) {
                         engrave = false;
                         break;
                     }
@@ -72,19 +58,16 @@ public class Quest02 {
         return counterResult;
     }
 
-    private Complex cycle(Complex target, Complex A, Complex divider) {
-        return cycle(target, A, divider, false);
+    private boolean isOutsideLimit(Complex result, BigDecimal maxLimit, BigDecimal minLimit) {
+        return result.X().compareTo(maxLimit) > 0
+               || result.X().compareTo(minLimit) < 0
+               || result.Y().compareTo(maxLimit) > 0
+               || result.Y().compareTo(minLimit) < 0;
     }
 
-    private Complex cycle(Complex target, Complex A, Complex divider, boolean doLog) {
+    private Complex cycle(Complex target, Complex A, Complex divider) {
         target = target.multiplyBy(target);
-        if (doLog) {
-            log.info("target post square : {}", target);
-        }
         target = target.divideBy(divider);
-        if (doLog) {
-            log.info("target post divide : {}", target);
-        }
         return target.add(A);
     }
 
@@ -113,18 +96,6 @@ public class Quest02 {
 
         public Complex deepCopy() {
             return new Complex(X, Y);
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (o == null || getClass() != o.getClass()) return false;
-            Complex complex = (Complex) o;
-            return Objects.equals(X, complex.X) && Objects.equals(Y, complex.Y);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(X, Y);
         }
 
         @Override
