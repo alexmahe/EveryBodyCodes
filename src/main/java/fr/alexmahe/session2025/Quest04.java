@@ -11,7 +11,7 @@ import static fr.alexmahe.common.Utils.RESOURCES;
 @Slf4j
 public class Quest04 {
 
-    public static void main(String[] args) throws IOException {
+    public static void main() throws IOException {
         var today = new Quest04();
         // PART 01
         var mult = today.getMultFromInput("input01");

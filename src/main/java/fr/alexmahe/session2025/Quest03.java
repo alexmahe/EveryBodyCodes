@@ -7,14 +7,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.stream.Collectors;
 
 import static fr.alexmahe.common.Utils.RESOURCES;
 
 @Slf4j
 public class Quest03 {
 
-    public static void main(String[] args) throws IOException {
+    public static void main() throws IOException {
         // PART 01
         var input = Utils.readInputSplitOnEmptyLines(RESOURCES.formatted("session2025", "Quest03", "input01")).get(0);
         var cratesStream = Arrays.stream(input.split(","))

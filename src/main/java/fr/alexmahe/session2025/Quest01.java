@@ -9,11 +9,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static fr.alexmahe.common.Utils.RESOURCES;
+
 @Slf4j
 public class Quest01 {
-
-    public static final String RESOURCES = "src/main/resources/%s/%s/%s";
-    public static final String TEST_RESOURCES = "src/main/resources/%s/%s/input";
 
     public static void main(String[] args) throws IOException {
         var today = new Quest01();

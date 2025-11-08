@@ -10,7 +10,7 @@ public class Quest02 {
     private static final Complex TEN = new Complex(10L, 10L);
     private static final Complex HUNDREDK = new Complex(100000L, 100000L);
 
-    public static void main(String[] args) {
+    public static void main() {
         var today = new Quest02();
 
         // PART 01
